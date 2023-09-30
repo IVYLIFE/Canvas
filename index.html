@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Display a map on a webpage</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet"> -->
+    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script> -->
+    <link rel="stylesheet" href="./index.css">
+
+</head>
+
+<body>
+
+<div id="mainSection">
+
+    <div id="leftSection" class="section">
+
+        <div id="mapContainer" class="container">
+            
+            <!-- <div id="map"></div> -->
+            <canvas id="map"></canvas>
+
+
+        </div>
+
+        <div class="horizontalLine"></div>
+
+        <div id="toolBox" class="container">
+
+            <div id="stroke">
+                <span id="decreaseBtn"><img src="./assets/minus-sign.png" alt="decrease"></span>
+                <input type="number" id="strokeSize">
+                <span id="increaseBtn"><img src="./assets/increase-sign.png" alt="increase"></span>
+            </div>
+
+            <div id="shapes">
+
+                <div class="dropdown">
+
+                    <div class="select">
+                        <span id="choosedShape">Choose Shapes</span>
+                        <img src="./assets/chevron_left.png" alt="chevron_left">
+                    </div>
+
+                    <input type="hidden" name="gender">
+                </div>
+
+                <ul id="shapeList" class="dropdownMenu">
+                    <li id="Point">Point</li>
+                    <li id="circle">Circle</li>
+                    <li id="triangle">Triangle</li>
+                </ul>
+
+            </div>
+
+            <div id="undo_redo">
+                <button id="undo">Undo</button>
+                <button id="redo">Redo</button>
+            </div>
+
+        </div>
+
+        <div id="controlsContainer" class="container">
+            <div id="mapControls">
+                <button id="upBtn" class="btn">Up</button>
+                <button id="leftBtn" class="btn">Left</button>
+                <button id="downBtn" class="btn">Down</button>
+                <button id="rightBtn" class="btn">Right</button>
+            </div>
+
+            <div id="userControls">
+                <button id="clearCanvas">Clear Canvas</button>
+                <button id="downloadBtn">Download</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div id="rightSection" class="section">
+
+        <div id="colorPalatte">
+
+            <div id="colorPicker">
+                <input type="color" id="color" value="#f4b6c2">
+            </div>
+
+            <div id="palatte">
+                
+            </div>
+
+        </div>
+
+        <div id="colorDescription">
+
+            <div id="descHeader">
+                <h3>Color </h3>
+                <h3>Terrain Description</h3>
+            </div>
+
+            <div id="descriptions"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <script src="./index.js"></script>
+    
+
+
+
+</body>
+
+
+
+</html>
