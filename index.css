@@ -1,0 +1,470 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.mapboxgl-control-container{
+    display: none !important;
+}
+
+.section{
+    width: 95%;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1rem;    
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    border-radius: 4px;
+}
+
+.container{
+    border: 1px solid rgb(0, 0, 0);
+    width: 100%;
+}
+
+.horizontalLine{
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    margin: 1rem 0;
+}
+
+
+button, #increaseBtn, #decreaseBtn{
+    cursor: pointer;
+}
+
+
+#leftSection{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+#map {
+    width: 100%;
+    height: 50vh;
+}
+
+#toolBox, #controlsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 2rem;
+}
+
+#toolBox div{
+    margin: 0 auto;
+}
+
+
+/* Stroke Size Input Style */
+#stroke{
+    display: flex;
+    gap: .7rem;
+    align-items: center;
+}
+
+#stroke input, #stroke span{
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    border: none;
+}
+
+#stroke input{
+    border-bottom: 4px solid black;
+    transition: all .2s ease-in-out;
+}
+
+#stroke input:focus{
+    border-bottom: 4px solid #007bff;
+    outline: none;
+}
+
+#stroke span{
+    width: 45px;
+    height: 45px;
+    padding: .5rem;
+    border-radius: 50%;
+    transition: all .2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+#stroke span:active{
+    background-color: #f2f2f2;
+    transform: scale(.9);
+}
+
+#stroke span>img{
+    width: 70%;
+    filter:opacity(0.8);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+/*Styling Shape Selections*/
+#shapes{
+    width: 180px;
+    position: relative;
+    transition: all .5s ease;
+}
+
+span.choose {
+  color: #555;
+  padding: 5px 0 10px;
+  display: inherit
+}
+
+span.msg{
+    display: none;
+}
+
+.select img{
+    width: 20px;
+    transition: all .5s ease;
+}
+
+.dropdown {
+    width: 100%;
+    border-radius: 2px;
+    height: 100%;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.dropdown .select {
+    cursor: pointer;
+    padding: .6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown.active:hover,
+.dropdown.active {
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    border-radius: 2px 2px 0 0;
+    background-color: #f8f8f8
+}
+
+.dropdown.active .select > img {
+    transform: rotate(-90deg)
+}
+
+#shapes.active .dropdownMenu{
+    display: block;
+}
+
+#shapes .dropdownMenu {
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: #fff;
+    width: 100%;
+    margin-top: 1px;
+    box-shadow: 0 1px 2px rgb(204, 204, 204);
+    border-radius: 0 1px 2px 2px;
+    max-height: 144px;
+    z-index: 9;
+    padding: 0;
+    transition: all .5s ease;
+    list-style: none;
+    display: none;
+}
+
+#shapes .dropdownMenu li {
+    padding: 10px;
+    transition: all .2s ease-in-out;
+    cursor: pointer
+} 
+
+#shapes .dropdownMenu li:hover {
+    background-color: #f2f2f2
+}
+
+#shapes .dropdownMenu li:active {
+    background-color: #e2e2e2
+}
+
+
+/* Undo-Redo Buttons */
+#undo_redo{
+    display: flex;
+    gap: 1rem;
+    
+}
+
+#undo_redo button, #mapControls button{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 50%;
+    font-size: .9rem;
+    transition: all .2s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+#undo_redo button:active, #mapControls button:active{
+    background-color: #f2f2f2;
+    transform: scale(0.9);
+}
+
+
+
+
+#mapControls{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: .5rem;
+    width: fit-content;
+    place-items: center;
+    justify-content: center;
+}
+
+#upBtn{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+#userControls{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#userControls button{
+    width: 180px;
+    padding: .9rem 2rem;
+    border: none;
+    font-size: 1rem;
+    transition: all .2s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+#userControls button:active{
+    transform: scale(0.9);
+    background-color: #f2f2f2;
+}
+
+
+
+
+#rightSection{
+    display: flex;
+    gap: 6rem;
+    margin-top: 15rem;
+
+}
+
+
+/* ColorPicker Styles */
+#colorPicker input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 55px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+#colorPicker input::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 4px solid #000000;
+}
+
+#colorPicker input::-moz-color-swatch {
+    border-radius: 50%;
+    border: 4px solid #000000;
+}
+
+
+
+#colorPalatte{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5rem 1rem;
+}
+
+#colorPicker, #descHeader{
+    margin-bottom: 1.5rem;
+    padding-bottom: .5rem;
+    border-bottom: 4px solid black;
+    border-radius: 4px;
+}
+
+#palatte, #descriptions{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+#colorDescription{
+    padding: .5rem 1rem;
+    width: 100%;
+}
+
+#descHeader{
+    height: 72px;
+    font-size: 1.2rem;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+#descHeader h3{
+    font-weight: 400;
+}
+
+#palatte .color{
+    cursor: pointer;
+}
+
+#palatte .color:active{
+    transform: scale(0.9);
+}
+
+.color{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+.description{
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    align-items: center;
+    align-items: flex-start;
+}
+
+.description p:active{
+    outline: none;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.description p {
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    color: #333;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 1.2rem;
+    transition: .2s ease;
+    padding: .5rem 1rem;
+    min-width: 170px;
+}
+
+.description p:focus {
+    outline: none;
+}
+
+.description p.active{
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    transform: scale(1.02);
+}
+
+
+#palatte div, .description{
+    transition: all .2s ease-in-out;
+}
+
+
+@media screen and (max-width : 585px) {
+
+
+    #rightSection{
+        gap: 3rem;
+    }
+
+    #descHeader h3{
+        text-align: right;
+        font-size: 1.2rem;
+    }
+
+    #colorDescription{
+        width: 293px;
+    }
+
+    .desc{
+        text-align: right;
+    }
+}
+
+@media screen and (min-width : 728px){
+
+    #rightSection{
+        gap: 4rem;
+    }
+
+    #descHeader, .description{
+        gap: 4rem;
+    }
+
+}
+
+
+@media screen and (min-width : 1400px) {
+
+    #mainSection{
+        display: flex;
+        justify-content: space-around;
+        gap: 6rem;
+        padding: 1rem 3rem;
+        border: 1px solid green;
+    }
+
+    #leftSection{
+        margin: 2rem 0;
+    }
+
+    #rightSection{
+        margin: 2rem 0 ;
+    }
+    
+}
+
+
+
+/* 
+    <!-- 
+
+        <div class="color" style="background-color: rgb(118, 209, 115);"></div>
+        <div class="color" style="background-color: rgb(218, 226, 190);"></div>
+
+        <div class="description">
+            <div class="color" style="background-color: #76d173;"></div>
+            <p class="desc" onclick = edit() >Grassy</p>
+        </div>
+
+        <div class="description">
+            <div class="color" style="background-color: #dae2be;"></div>
+            <p class="desc" onclick = edit() >Plain</p>
+        </div>
+    -->
+ */
