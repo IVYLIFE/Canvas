@@ -153,38 +153,7 @@ colorPicker.onchange = function () {
 
 // currentColor, strokeSize, selectedShape
 
-let canvas = document.querySelector('canvas');
-let ctx = canvas.getContext('2d');
-
-
-let painting = false;
-let width = canvas.innerWidth;
-let height = canvas.innerHeight;
-
-console.log( currentColor, strokeSize.value, selectedShape);
-
-
-function drawCircle(x, y, radius, color) {
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2, true);
-    ctx.fillStyle = color;   
-    ctx.fill();
-}
-
-function drawLine(x1, y1, x2, y2, color) {
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = strokeSize.value;
-    ctx.stroke();
-    ctx.closePath();
-}
-
-function drawRect(x, y, width, height, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, width, height);
-}
+// export {}
 
 
 
